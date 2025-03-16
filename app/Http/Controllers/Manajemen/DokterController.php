@@ -50,15 +50,17 @@ class DokterController extends Controller
                 'email'     =>  $req->email,
                 'alumni'    =>  $req->alumni
             ]);
-            if ($req->hasFile('image')) {
-                $destination_path = 'public/perawat';
-                $image = $req->file('image');
-                $image_name = $image->getClientOriginalName() . '(' . $dokter->id . ')';
-                $path = $req->file('image')->storeAs($destination_path, $image_name);
-                $photo = Storage::url($path);
-                $newphoto = $image_name;
-                $dokter->photo = $newphoto;
+            
+            // Perbaikan di sini - memeriksa 'photo' bukan 'image'
+            if ($req->hasFile('photo')) {
+                $destination_path = 'public/dokter'; // Ubah path ke dokter
+                $image = $req->file('photo');
+                $image_name = $dokter->id . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $path = $req->file('photo')->storeAs($destination_path, $image_name);
+                $dokter->photo = 'storage/dokter/' . $image_name; // Perbaikan path foto
+                $dokter->save(); // Jangan lupa save perubahan
             }
+            
             DB::commit();
         } catch (\Exception $th) {
             //throw $th;
@@ -87,13 +89,14 @@ class DokterController extends Controller
     }
 
     public function getData()
-{
-    $dokter = Dokter::where('active', '=', true)->select('id', 'nama')->get();
-    return response()->json($dokter);
-}
-public function getDetail($id)
-{
-    $dokter = Dokter::find($id);
-    return response()->json($dokter);
-}
+    {
+        $dokter = Dokter::where('active', '=', true)->select('id', 'nama')->get();
+        return response()->json($dokter);
+    }
+    
+    public function getDetail($id)
+    {
+        $dokter = Dokter::find($id);
+        return response()->json($dokter);
+    }
 }

@@ -128,7 +128,7 @@
                                             <div class="modal-body">
 
                                                 <!-- /.Form Modal Dokter Baru -->
-                                                <form action="{{route('manajemen.dokter.store')}}" method="POST">
+                                                <form action="{{route('manajemen.dokter.store')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="nama" class="control-label">Nama Lengkap</label>
@@ -171,12 +171,12 @@
                                                         <input name="alumni" type="text" class="form-control" id="alumni">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="foto">Foto</label>
-                                                        <div>
-                                                            <input type="file" class="form-control form-control-file"
-                                                                id="exampleFormControlFile1">
-                                                        </div>
-                                                    </div>
+    <label for="photo">Foto</label>
+    <div>
+        <input type="file" class="form-control form-control-file" 
+               id="photo" name="photo">
+    </div>
+</div>
                                                     <div class="modal-footer">
                                                         <button type="submit"
                                                             class="btn btn-success waves-effect waves-light">Tambah
