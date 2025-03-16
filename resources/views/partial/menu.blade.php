@@ -6,10 +6,12 @@
             <li class="nav-small-cap m-t-10"></li>
             <li> <a href="{{Route('home')}}" class="waves-effect"><i class="ti-home p-r-10"></i> <span
                         class="hide-menu ">Beranda</span></a> </li>
+                        {{-- 
             @can('olah_pasien')
             <li> <a href="{{Route('pendaftaran.index')}}" class="waves-effect"><i class="fa fa-user-plus p-r-10"></i>
                     <span class="hide-menu"> Pendaftaran </span></a>
             @endcan
+            --}}
             <li> <a href="{{Route('pemeriksaan.index')}}" class="waves-effect"><i class="fa fa-stethoscope p-r-10"></i>
                     <span class="hide-menu"> Pemeriksaan </span></a>
             </li>
