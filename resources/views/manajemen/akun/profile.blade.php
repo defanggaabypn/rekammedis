@@ -92,6 +92,15 @@
                                             <br /> {{ auth()->user()->kokab_nama ?? 'Lampung' }}, Indonesia.</p>
                                     </div>
                                 </div>
+
+                                <!-- /.row -->
+<hr>
+<!-- Pasien terselesaikan section -->
+<div class="row text-center m-t-10">
+    <div class="col-md-12"><strong>Pasien Terselesaikan</strong>
+        <h1>{{ $pasienCount ?? 12 }}</h1>
+    </div>
+</div>
                             </div>
                         </div>
                     </div>
