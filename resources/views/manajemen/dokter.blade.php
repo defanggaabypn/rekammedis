@@ -338,7 +338,8 @@
         jQuery('.mydatepicker, #datepicker').datepicker();
         jQuery('#datepicker-autoclose').datepicker({
             autoclose: true,
-            todayHighlight: true
+            todayHighlight: true,
+            endDate: new Date() // Membatasi tanggal maksimal sampai hari ini
         });
         jQuery('#date-range').datepicker({
             toggleActive: true
@@ -373,8 +374,7 @@
                 days: 6
             }
         });
-
-    </script>
+</script>
 
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>

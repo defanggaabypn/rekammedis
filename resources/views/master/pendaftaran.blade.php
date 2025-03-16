@@ -174,14 +174,7 @@
                                                             <option value="{{$dokter->id}}">{{$dokter->nama}}</option>
                                                             @endforeach
                                                         </select> </div>
-                                                    <div class="form-group">
-                                                        <label for="foto">Foto</label>
-                                                        <div>
-                                                            <input name="image" type="file"
-                                                                class="form-control form-control-file"
-                                                                id="exampleFormControlFile1">
-                                                        </div>
-                                                    </div>
+                                               
                                                     
                                                     <div class="modal-footer">
                                                         <button name="aksi" type="submit" value="1"
@@ -397,7 +390,8 @@
         jQuery('.mydatepicker, #datepicker').datepicker();
         jQuery('#datepicker-autoclose').datepicker({
             autoclose: true,
-            todayHighlight: true
+            todayHighlight: true,
+            endDate: new Date() // Membatasi tanggal maksimal sampai hari ini
         });
         jQuery('#date-range').datepicker({
             toggleActive: true
@@ -432,8 +426,7 @@
                 days: 6
             }
         });
-
-    </script>
+</script>
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 
