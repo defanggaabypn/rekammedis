@@ -71,12 +71,14 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/perawat',                   [PerawatController::class, 'index'])->name('manajemen.perawat');
             Route::post('/perawat/store',            [PerawatController::class, 'store'])->name('manajemen.perawat.store');
             Route::get('/perawat/delete/{id}',           [PerawatController::class, 'delete'])->name('manajemen.perawat.delete');
-
+            Route::get('/perawat/get-data',          [PerawatController::class, 'getData'])->name('manajemen.perawat.getData');
+            Route::get('/perawat/get-detail/{id}',   [PerawatController::class, 'getDetail'])->name('manajemen.perawat.getDetail');
+        
             Route::get('/dokter',                    [DokterController::class, 'index'])->name('manajemen.dokter');
             Route::post('/dokter/store',             [DokterController::class, 'store'])->name('manajemen.dokter.store');
             Route::get('/dokter/delete/{id}',            [DokterController::class, 'delete'])->name('manajemen.dokter.delete');
-            Route::get('/dokter/get-data', [DokterController::class, 'getData'])->name('manajemen.dokter.getData');
-            Route::get('/perawat/get-data', [PerawatController::class, 'getData'])->name('manajemen.perawat.getData');
+            Route::get('/dokter/get-data',           [DokterController::class, 'getData'])->name('manajemen.dokter.getData');
+            Route::get('/dokter/get-detail/{id}',    [DokterController::class, 'getDetail'])->name('manajemen.dokter.getDetail');
         });
         Route::middleware(['olah_keuangan'])->group(function () {
             Route::get('/keuangan',                  [KeuanganController::class, 'index'])->name('manajemen.keuangan');

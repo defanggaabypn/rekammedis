@@ -101,14 +101,16 @@
     @csrf
     <div class="form-group">
         <label for="username" class="control-label">Username</label>
-        <input type="text" class="form-control" id="usernamebaru" name="username">
+        <input type="text" class="form-control" id="usernamebaru"
+            name="username">
         @error('username')
         <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
     <div class="form-group">
         <label for="nama" class="control-label">Nama Pemegang</label>
-        <input type="text" class="form-control" id="namabaru" name="nama">
+        <input type="text" class="form-control" id="namabaru"
+            name="nama">
         @error('nama')
         <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -126,7 +128,7 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
-
+    
     <!-- Field untuk Dokter - awalnya tersembunyi -->
     <div id="dokter-field" class="form-group" style="display: none;">
         <label for="dokter_id" class="control-label">Pilih Dokter</label>
@@ -157,15 +159,31 @@
         </div>
         <div class="form-group">
             <label for="tanggal_lahir" class="control-label">Tanggal Lahir</label>
-            <input type="date" class="form-control mydatepicker" name="tanggal_lahir">
+            <input type="text" class="form-control mydatepicker" name="tanggal_lahir" placeholder="mm/dd/yyyy">
+        </div>
+        <div class="form-group">
+            <label for="no_telp" class="control-label">No Telp</label>
+            <input type="text" class="form-control" name="no_telp">
+        </div>
+        <div class="form-group">
+            <label for="no_telp2" class="control-label">No Telp 2</label>
+            <input type="text" class="form-control" name="no_telp2">
+        </div>
+        <div class="form-group">
+            <label for="kokab_nama" class="control-label">Kokab Nama</label>
+            <input type="text" class="form-control" name="kokab_nama">
         </div>
         <div class="form-group">
             <label for="email" class="control-label">Email</label>
             <input type="email" class="form-control" name="email">
         </div>
         <div class="form-group">
-            <label for="no_telp" class="control-label">No. Telepon</label>
-            <input type="text" class="form-control" name="no_telp">
+            <label for="alumni" class="control-label">Alumni</label>
+            <input type="text" class="form-control" name="alumni">
+        </div>
+        <div class="form-group">
+            <label for="pekerjaan" class="control-label">Pekerjaan</label>
+            <input type="text" class="form-control" name="pekerjaan">
         </div>
         <div class="form-group">
             <label for="alamat" class="control-label">Alamat</label>
@@ -175,8 +193,10 @@
 
     <div class="form-group">
         <label for="password" class="control-label">Password</label>
-        <input type="password" class="form-control" id="passwordbaru" name="password">
-        <input type="checkbox" onclick="show_hide_pwdbar()"> ShowPassword
+        <input type="password" class="form-control" id="passwordbaru"
+            name="password">
+        <input type="checkbox" onclick="show_hide_pwdbar()">
+        ShowPassword
         @error('password')
         <span class="text-danger d-block">{{ $message }}</span>
         @enderror
@@ -184,7 +204,9 @@
 
     <!-- Button trigger modal -->
     <div class="modal-footer">
-        <button type="submit" class="btn btn-danger waves-effect waves-light">Simpan</button>
+        <button type="submit"
+            class="btn btn-danger waves-effect waves-light">Simpan
+        </button>
     </div>
 </form>
                                             </div>
@@ -474,7 +496,7 @@
                 $('#dokter-field').show();
                 // Ambil data dokter dari server
                 $.ajax({
-                    url: '{{ route("manajemen.dokter") }}/get-data',
+                    url: '{{ route("manajemen.dokter.getData") }}',
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -492,7 +514,7 @@
                 $('#perawat-field').show();
                 // Ambil data perawat dari server
                 $.ajax({
-                    url: '{{ route("manajemen.perawat") }}/get-data',
+                    url: '{{ route("manajemen.perawat.getData") }}',
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {

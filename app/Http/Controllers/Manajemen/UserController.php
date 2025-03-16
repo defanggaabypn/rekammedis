@@ -41,13 +41,16 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ];
         
-        if ($request->role === 'owner' || $request->role === 'staff') {
-            // field tambahan untuk owner/staff
-            $userData['jenis_kelamin'] = $request->jenis_kelamin;
-            $userData['tanggal_lahir'] = $request->tanggal_lahir;
-            $userData['email'] = $request->email;
-            $userData['no_telp'] = $request->no_telp;
-            $userData['alamat'] = $request->alamat;
+        // Tambahkan field lain jika ada
+        $additionalFields = [
+            'jenis_kelamin', 'tanggal_lahir', 'no_telp', 'no_telp2', 
+            'kokab_nama', 'email', 'alumni', 'pekerjaan', 'alamat', 'spesialis'
+        ];
+        
+        foreach ($additionalFields as $field) {
+            if ($request->has($field)) {
+                $userData[$field] = $request->$field;
+            }
         }
         
         $user->create($userData);

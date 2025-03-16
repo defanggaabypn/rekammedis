@@ -88,4 +88,9 @@ class PerawatController extends Controller
     $perawat = Perawat::where('active', '=', true)->select('id', 'nama')->get();
     return response()->json($perawat);
 }
+public function getDetail($id)
+{
+    $perawat = Perawat::find($id);
+    return response()->json($perawat);
+}
 }

@@ -160,7 +160,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="no_telp" class="control-label">Nomor Telepon</label>
-                                                        <input name="no_telp" type="text" class="form-control" id="notlp">
+                                                        <input name="no_telp" type="number" class="form-control" id="notlp">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="email" class="control-label">Email</label>

@@ -91,4 +91,9 @@ class DokterController extends Controller
     $dokter = Dokter::where('active', '=', true)->select('id', 'nama')->get();
     return response()->json($dokter);
 }
+public function getDetail($id)
+{
+    $dokter = Dokter::find($id);
+    return response()->json($dokter);
+}
 }
