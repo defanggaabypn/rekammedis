@@ -9,12 +9,36 @@
 
             <!-- /.User Kanan -->
             <li class="dropdown">
-                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-                        src="{{Auth::user()->photo}}" onerror="this.onerror=null; this.src='{{asset('plugins/images/users/d1.jpg')}}'" alt="../plugins/images/users/d1.jpg" width="36" class="img-circle"><b
-                        class="hidden-xs">{{Auth::user()->nama}}</b> </a>
-
-                <!-- /.User Kanan -->
-            </li>
+    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+        @if(Auth::user()->role == 'dokter')
+            @php
+                $dokter = \DB::table('dokters')->where('nama', Auth::user()->nama)->first();
+            @endphp
+            @if($dokter && $dokter->photo && $dokter->photo != '../plugins/images/users/d1.jpg')
+                <img src="{{ asset($dokter->photo) }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @else
+                <img src="{{ asset('plugins/images/users/d1.jpg') }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @endif
+        @elseif(Auth::user()->role == 'perawat')
+            @php
+                $perawat = \DB::table('perawats')->where('nama', Auth::user()->nama)->first();
+            @endphp
+            @if($perawat && $perawat->photo && $perawat->photo != '../plugins/images/users/d1.jpg')
+                <img src="{{ asset($perawat->photo) }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @else
+                <img src="{{ asset('plugins/images/users/d1.jpg') }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @endif
+        @else
+            @if(Auth::user()->photo && Auth::user()->photo != '/plugins/images/users/d1.jpg')
+                <img src="{{ asset(Auth::user()->photo) }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @else
+                <img src="{{ asset('plugins/images/users/d1.jpg') }}" alt="user-img" width="36" height="36" class="img-circle" style="object-fit: cover;">
+            @endif
+        @endif
+        <b class="hidden-xs">{{Auth::user()->nama}}</b>
+    </a>
+    <!-- /.User Kanan -->
+</li>
 
         </ul>
     </div>

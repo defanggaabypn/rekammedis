@@ -110,14 +110,16 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="nama" class="control-label">Nama Lengkap</label>
-                                                        <input name="nama" type="text" class="form-control" id="nama"> </div>
+                                                        <input name="nama" type="text" class="form-control" id="nama">
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="tl" class="control-label">Tanggal Lahir</label>
                                                         <div class="input-group">
                                                             <input name="tgl_lahir" type="text" class="form-control"
                                                                 id="datepicker-autoclose" placeholder="mm/dd/yyyy">
                                                             <span class="input-group-addon"><i
-                                                                    class="icon-calender"></i></span> </div>
+                                                                    class="icon-calender"></i></span>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="jenkel" class="control-label">Jenis Kelamin</label>
@@ -132,20 +134,23 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="notlp" class="control-label">Nomor Telepon</label>
-                                                        <input name="no_telp" type="text" class="form-control" id="notlp"> </div>
+                                                        <input name="no_telp" type="text" class="form-control" id="notlp">
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="email" class="control-label">Email</label>
-                                                        <input name="email" type="text" class="form-control" id="email"> </div>
+                                                        <input name="email" type="text" class="form-control" id="email">
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="alumni" class="control-label">Alumni</label>
-                                                        <input name="alumni" type="text" class="form-control" id="alumni"> </div>
-                                                        <div class="form-group">
-        <label for="photo">Photo</label>
-        <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror">
-        @error('photo')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
+                                                        <input name="alumni" type="text" class="form-control" id="alumni">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="photo">Photo</label>
+                                                        <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror">
+                                                        @error('photo')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                     <div class="form-group">
                                                         @if ($errors->any())
                                                         <div class="alert alert-danger">
@@ -239,9 +244,9 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#myTable').DataTable();
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var table = $('#example').DataTable({
                     "columnDefs": [{
                         "visible": false,
@@ -251,7 +256,7 @@
                         [2, 'asc']
                     ],
                     "displayLength": 25,
-                    "drawCallback": function (settings) {
+                    "drawCallback": function(settings) {
                         var api = this.api();
                         var rows = api.rows({
                             page: 'current'
@@ -259,7 +264,7 @@
                         var last = null;
                         api.column(2, {
                             page: 'current'
-                        }).data().each(function (group, i) {
+                        }).data().each(function(group, i) {
                             if (last !== group) {
                                 $(rows).eq(i).before(
                                     '<tr class="group"><td colspan="5">' +
@@ -270,7 +275,7 @@
                     }
                 });
                 // Order by the grouping
-                $('#example tbody').on('click', 'tr.group', function () {
+                $('#example tbody').on('click', 'tr.group', function() {
                     var currentOrder = table.order()[0];
                     if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
                         table.order([2, 'desc']).draw();
@@ -286,7 +291,6 @@
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ]
         });
-
     </script>
     <!-- Color Picker Plugin JavaScript -->
     <script src="/plugins/bower_components/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
@@ -337,7 +341,6 @@
                 days: 6
             }
         });
-
     </script>
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
