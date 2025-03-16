@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="{{ auth()->user()->photo ?? '/plugins/images/users/d1.jpg' }}">
+                            <div class="user-bg"> <img width="100%" alt="user" src="{{ auth()->user()->photo }}">
                             </div>
                             <div class="user-btm-box">
                                 <!-- .row -->
@@ -68,8 +68,8 @@
                                     <div class="col-md-6 b-r"><strong>Nama</strong>
                                         <p>{{ auth()->user()->nama }}</p>
                                     </div>
-                                    <div class="col-md-6"><strong>Role</strong>
-                                        <p>{{ ucfirst(auth()->user()->role) }}</p>
+                                    <div class="col-md-6"><strong>Spesialis</strong>
+                                        <p>Dokter Umum</p>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -77,10 +77,10 @@
                                 <!-- .row -->
                                 <div class="row text-center m-t-10">
                                     <div class="col-md-6 b-r"><strong>Email</strong>
-                                        <p>{{ auth()->user()->email ?? 'admin@lshc.com' }}</p>
+                                        <p>nezaukhalima@gmail.com</p>
                                     </div>
                                     <div class="col-md-6"><strong>No.Telp</strong>
-                                        <p>{{ auth()->user()->no_telp ?? '089524345376' }}</p>
+                                        <p>082279822408</p>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -88,8 +88,15 @@
                                 <!-- .row -->
                                 <div class="row text-center m-t-10">
                                     <div class="col-md-12"><strong>Alamat</strong>
-                                        <p>{{ auth()->user()->alamat ?? 'Lampung Selatan' }}
-                                            <br /> {{ auth()->user()->kokab_nama ?? 'Lampung' }}, Indonesia.</p>
+                                        <p>Bandar Harapan, RT/RW 001/002, Terbanggi Besar, Lampung Tengah
+                                            <br /> Lampung, Indonesia.</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- /.row -->
+                                <div class="row text-center m-t-10">
+                                    <div class="col-md-12"><strong>Pasien Terselesaikan</strong>
+                                        <h1>12</h1>
                                     </div>
                                 </div>
                             </div>
@@ -101,47 +108,51 @@
                                 <tbody>
                                     <tr>
                                         <th>Nama Lengkap</th>
-                                        <td>{{ auth()->user()->nama }}</td>
+                                        <td>Ackrya Sibarani</td>
                                     </tr>
                                     <tr>
                                         <th>Jenis Kelamin</th>
-                                        <td>{{ auth()->user()->jenis_kelamin ?? 'Laki-Laki' }}</td>
+                                        <td><span class="not-set">Laki-Laki</span></td>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Lahir</th>
-                                        <td>{{ auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '28 Februari 2000' }}</td>
+                                        <td><span class="not-set">28 Februari 2000</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Spesialis</th>
+                                        <td>Umum</td>
                                     </tr>
                                     <tr>
                                         <th>No Telp</th>
-                                        <td>{{ auth()->user()->no_telp ?? '089524345376' }}</td>
+                                        <td><span class="not-set">089524345376</span></td>
                                     </tr>
                                     <tr>
                                         <th>No Telp 2</th>
-                                        <td>{{ auth()->user()->no_telp2 ?? '089524345376' }}</td>
+                                        <td><span class="not-set">089524345376</span></td>
                                     </tr>
                                     <tr>
                                         <th>Kokab Nama</th>
-                                        <td>{{ auth()->user()->kokab_nama ?? 'Lampung' }}</td>
+                                        <td><span class="not-set">Lampung</span></td>
                                     </tr>
                                     <tr>
                                         <th>Email</th>
-                                        <td>{{ auth()->user()->email ?? 'admin@lshc.com' }}</td>
+                                        <td><span class="not-set">admin@lshc</span></td>
                                     </tr>
                                     <tr>
                                         <th>Alumni</th>
-                                        <td>{{ auth()->user()->alumni ?? 'Institut Teknologi Sumatera' }}</td>
+                                        <td><span class="not-set">Institut Teknologi Sumatera</span></td>
                                     </tr>
                                     <tr>
                                         <th>Pekerjaan</th>
-                                        <td>{{ auth()->user()->pekerjaan ?? 'SuperAdmin' }}</td>
+                                        <td><span class="not-set">Dokter Umum</span></td>
                                     </tr>
                                     <tr>
                                         <th>Alamat</th>
-                                        <td>{{ auth()->user()->alamat ?? 'Lampung Selatan' }}</td>
+                                        <td><span class="not-set">Lampung Selatan</span></td>
                                     </tr>
                                     <tr>
                                         <th>Created</th>
-                                        <td>{{ auth()->user()->created_at }}</td>
+                                        <td>2021-04-18 03:23:13</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -197,6 +208,49 @@
                                 <li><a href="javascript:void(0)" data-theme="purple-dark"
                                         class="purple-dark-theme">11</a></li>
                                 <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme">12</a>
+                                </li>
+                            </ul>
+                            <ul class="m-t-20 chatonline">
+                                <li><b>Chat option</b></li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg"
+                                            alt="user-img" class="img-circle"> <span>Varun Dhavan <small
+                                                class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg"
+                                            alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small
+                                                class="text-warning">Away</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg"
+                                            alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small
+                                                class="text-danger">Busy</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg"
+                                            alt="user-img" class="img-circle"> <span>Arijit Sinh <small
+                                                class="text-muted">Offline</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg"
+                                            alt="user-img" class="img-circle"> <span>Govinda Star <small
+                                                class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg"
+                                            alt="user-img" class="img-circle"> <span>John Abraham<small
+                                                class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg"
+                                            alt="user-img" class="img-circle"> <span>Hritik Roshan<small
+                                                class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg"
+                                            alt="user-img" class="img-circle"> <span>Pwandeep rajan <small
+                                                class="text-success">online</small></span></a>
                                 </li>
                             </ul>
                         </div>

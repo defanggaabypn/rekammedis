@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manajemen;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AkunController extends Controller
 {
@@ -35,7 +36,6 @@ class AkunController extends Controller
                 ->route('akun.ganti-password')
                 ->withErrors(['old_password' => 'Password tidak sesuai']);
         }
-        
     }
 
     public function profil()

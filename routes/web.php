@@ -90,43 +90,4 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('profil',                     [AkunController::class, 'profil'])->name('akun.profil');
         });
     });
-
-
-    // //template test
-    // Route::get('rekam-medis/lihat-rm', function () {
-    //     return view('/rekam-medis/lihat-rm');
-    // });
-
-
-    // Route::get('pemeriksaan/lihat-pemeriksaan', function () {
-    //     return view('pemeriksaan/lihat-pemeriksaan');
-    // });
-
-    // Route::get('rekam-medis/edit-rm', function () {
-    //     return view('rekam-medis/edit-rm');
-    // });
-
-    // Route::get('/profile', function () {
-    //     return view('master/profile');
-    // });
-
-    // Route::get('/ganti-password', function () {
-    //     return view('master/ganti-password');
-    // });
-
-    // Route::group(['middleware'=>'Role:superadmin'], function (){
-    //     Route::get()
-    // });
-
-    // Route::group(['middleware'=>'Role:customerservice'], function (){
-    //     Route::get()
-    // });
-
-    // Route::group(['middleware'=>'Role:perawat'], function (){
-    //     Route::get()
-    // });
-    // Route::group(['middleware'=>'Role:dokter'], function (){
-    //     Route::get()
-    // });
-
 });
