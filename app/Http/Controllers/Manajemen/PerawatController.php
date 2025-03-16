@@ -83,4 +83,9 @@ class PerawatController extends Controller
         }
         return back()->with('success', 'Data perawat berhasil dihapus!');
     }
+    public function getData()
+{
+    $perawat = Perawat::where('active', '=', true)->select('id', 'nama')->get();
+    return response()->json($perawat);
+}
 }

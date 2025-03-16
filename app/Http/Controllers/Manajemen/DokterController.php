@@ -85,4 +85,10 @@ class DokterController extends Controller
         }
         return back()->with('success', 'Data dokter berhasil dihapus!');
     }
+
+    public function getData()
+{
+    $dokter = Dokter::where('active', '=', true)->select('id', 'nama')->get();
+    return response()->json($dokter);
+}
 }

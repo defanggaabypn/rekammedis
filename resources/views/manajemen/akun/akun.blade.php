@@ -96,57 +96,97 @@
                                                 <h4 class="modal-title">Tambah Akun Baru</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <!-- /.Form Modal Akun Baru -->
-                                                <form action="{{ route('manajemen-akun.store') }}" method="POST">
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="username" class="control-label">Username</label>
-                                                        <input type="text" class="form-control" id="usernamebaru"
-                                                            name="username">
-                                                        @error('username')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nama" class="control-label">Nama Pemegang</label>
-                                                        <input type="text" class="form-control" id="namabaru"
-                                                            name="nama">
-                                                        @error('nama')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="role" class="control-label">Role</label>
-                                                        <select name="role" id="rolebaru" class="form-control">
-                                                            <option value="">Pilih Role</option>
-                                                            <option value="owner">Owner</option>
-                                                            <option value="staff">Staff</option>
-                                                            <option value="dokter">Dokter</option>
-                                                            <option value="perawat">Perawat</option>
-                                                        </select>
-                                                        @error('role')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="password" class="control-label">Password</label>
-                                                        <input type="password" class="form-control" id="passwordbaru"
-                                                            name="password">
-                                                        <input type="checkbox" onclick="show_hide_pwdbar()">
-                                                        ShowPassword
-                                                        @error('password')
-                                                        <span class="text-danger d-block">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
+<!-- Form Modal Akun Baru yang sudah dimodifikasi -->
+<form action="{{ route('manajemen-akun.store') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="username" class="control-label">Username</label>
+        <input type="text" class="form-control" id="usernamebaru" name="username">
+        @error('username')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="nama" class="control-label">Nama Pemegang</label>
+        <input type="text" class="form-control" id="namabaru" name="nama">
+        @error('nama')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="role" class="control-label">Role</label>
+        <select name="role" id="rolebaru" class="form-control">
+            <option value="">Pilih Role</option>
+            <option value="owner">Owner</option>
+            <option value="staff">Staff</option>
+            <option value="dokter">Dokter</option>
+            <option value="perawat">Perawat</option>
+        </select>
+        @error('role')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                                                    <!-- Button trigger modal -->
-                                                    <div class="modal-footer">
-                                                        <button type="submit"
-                                                            class="btn btn-danger waves-effect waves-light">Simpan
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <!-- /. end Form Modal Akun Baru -->
+    <!-- Field untuk Dokter - awalnya tersembunyi -->
+    <div id="dokter-field" class="form-group" style="display: none;">
+        <label for="dokter_id" class="control-label">Pilih Dokter</label>
+        <select name="dokter_id" id="dokter_id" class="form-control">
+            <option value="">Pilih Dokter</option>
+            <!-- Akan diisi melalui AJAX -->
+        </select>
+    </div>
+
+    <!-- Field untuk Perawat - awalnya tersembunyi -->
+    <div id="perawat-field" class="form-group" style="display: none;">
+        <label for="perawat_id" class="control-label">Pilih Perawat</label>
+        <select name="perawat_id" id="perawat_id" class="form-control">
+            <option value="">Pilih Perawat</option>
+            <!-- Akan diisi melalui AJAX -->
+        </select>
+    </div>
+
+    <!-- Field untuk Owner/Staff - awalnya tersembunyi -->
+    <div id="user-fields" style="display: none;">
+        <div class="form-group">
+            <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
+            <select name="jenis_kelamin" class="form-control">
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tanggal_lahir" class="control-label">Tanggal Lahir</label>
+            <input type="date" class="form-control mydatepicker" name="tanggal_lahir">
+        </div>
+        <div class="form-group">
+            <label for="email" class="control-label">Email</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label for="no_telp" class="control-label">No. Telepon</label>
+            <input type="text" class="form-control" name="no_telp">
+        </div>
+        <div class="form-group">
+            <label for="alamat" class="control-label">Alamat</label>
+            <textarea class="form-control" name="alamat" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+        <input type="password" class="form-control" id="passwordbaru" name="password">
+        <input type="checkbox" onclick="show_hide_pwdbar()"> ShowPassword
+        @error('password')
+        <span class="text-danger d-block">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- Button trigger modal -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger waves-effect waves-light">Simpan</button>
+    </div>
+</form>
                                             </div>
                                         </div>
                                     </div>
@@ -418,7 +458,76 @@
 
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+    $(document).ready(function () {
+        // Menangani perubahan pada pemilihan role
+        $('#rolebaru').change(function () {
+            var role = $(this).val();
+            
+            // Sembunyikan semua field khusus
+            $('#dokter-field').hide();
+            $('#perawat-field').hide();
+            $('#user-fields').hide();
+            
+            // Tampilkan field sesuai role yang dipilih
+            if (role === 'dokter') {
+                $('#dokter-field').show();
+                // Ambil data dokter dari server
+                $.ajax({
+                    url: '{{ route("manajemen.dokter") }}/get-data',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var options = '<option value="">Pilih Dokter</option>';
+                        $.each(data, function (index, dokter) {
+                            options += '<option value="' + dokter.id + '">' + dokter.nama + '</option>';
+                        });
+                        $('#dokter_id').html(options);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching dokter data:', error);
+                    }
+                });
+            } else if (role === 'perawat') {
+                $('#perawat-field').show();
+                // Ambil data perawat dari server
+                $.ajax({
+                    url: '{{ route("manajemen.perawat") }}/get-data',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var options = '<option value="">Pilih Perawat</option>';
+                        $.each(data, function (index, perawat) {
+                            options += '<option value="' + perawat.id + '">' + perawat.nama + '</option>';
+                        });
+                        $('#perawat_id').html(options);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching perawat data:', error);
+                    }
+                });
+            } else if (role === 'owner' || role === 'staff') {
+                $('#user-fields').show();
+            }
+        });
 
+        // Ketika dokter dipilih, isi otomatis nama pemegang
+        $('#dokter_id').change(function() {
+            var dokterName = $('#dokter_id option:selected').text();
+            if (dokterName !== "Pilih Dokter") {
+                $('#namabaru').val(dokterName);
+            }
+        });
+
+        // Ketika perawat dipilih, isi otomatis nama pemegang
+        $('#perawat_id').change(function() {
+            var perawatName = $('#perawat_id option:selected').text();
+            if (perawatName !== "Pilih Perawat") {
+                $('#namabaru').val(perawatName);
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

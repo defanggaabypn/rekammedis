@@ -29,14 +29,29 @@ class UserController extends Controller
     {
         $validator = $request->validate([
             'username' => 'required|unique:App\Models\User,username',
-            'nama' => 'required|unique:App\Models\User,nama',
-            'role'  => 'required',
+            'nama' => 'required',
+            'role' => 'required',
             'password' => 'required|alpha_num'
         ]);
-        $validator['password'] = bcrypt($validator['password']);
-
-        $user->create($validator);
-        return redirect()->route('manajemen-akun.index');
+        
+        $userData = [
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'role' => $request->role,
+            'password' => bcrypt($request->password)
+        ];
+        
+        if ($request->role === 'owner' || $request->role === 'staff') {
+            // field tambahan untuk owner/staff
+            $userData['jenis_kelamin'] = $request->jenis_kelamin;
+            $userData['tanggal_lahir'] = $request->tanggal_lahir;
+            $userData['email'] = $request->email;
+            $userData['no_telp'] = $request->no_telp;
+            $userData['alamat'] = $request->alamat;
+        }
+        
+        $user->create($userData);
+        return redirect()->route('manajemen-akun.index')->with('success', 'Akun berhasil ditambahkan');
     }
 
     /**
