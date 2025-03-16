@@ -106,7 +106,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- /.Form Modal Pasien Baru -->
-                                                <form action="{{route('manajemen.perawat.store')}}" method="POST">
+                                                <form action="{{route('manajemen.perawat.store')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="nama" class="control-label">Nama Lengkap</label>
@@ -139,13 +139,13 @@
                                                     <div class="form-group">
                                                         <label for="alumni" class="control-label">Alumni</label>
                                                         <input name="alumni" type="text" class="form-control" id="alumni"> </div>
-                                                    <div class="form-group">
-                                                        <label for="foto">Foto</label>
-                                                        <div>
-                                                            <input name="photo" type="file" class="form-control form-control-file"
-                                                                id="exampleFormControlFile1">
-                                                        </div>
-                                                    </div>
+                                                        <div class="form-group">
+        <label for="photo">Photo</label>
+        <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror">
+        @error('photo')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
                                                     <div class="form-group">
                                                         @if ($errors->any())
                                                         <div class="alert alert-danger">

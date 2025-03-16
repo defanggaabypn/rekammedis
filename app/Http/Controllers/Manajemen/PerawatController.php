@@ -49,15 +49,18 @@ class PerawatController extends Controller
                 'email'     =>  $req->email,
                 'alumni'    =>  $req->alumni
             ]);
-            if ($req->hasFile('image')) {
+
+            // Fix: Changed from 'image' to 'photo' to match your validation rules
+            if ($req->hasFile('photo')) {
                 $destination_path = 'public/perawat';
-                $image = $req->file('image');
+                $image = $req->file('photo');
                 $image_name = $image->getClientOriginalName() . '(' . $req->nama . ')';
-                $path = $req->file('image')->storeAs($destination_path, $image_name);
+                $path = $req->file('photo')->storeAs($destination_path, $image_name);
                 $photo = Storage::url($path);
-                $newphoto = $image_name;
-                $perawat->photo = $newphoto;
+                $perawat->photo = $photo; // Store the URL, not just the filename
+                $perawat->save(); // Don't forget to save the model after updating
             }
+
             DB::commit();
         } catch (\Exception $th) {
             //throw $th;
@@ -84,13 +87,13 @@ class PerawatController extends Controller
         return back()->with('success', 'Data perawat berhasil dihapus!');
     }
     public function getData()
-{
-    $perawat = Perawat::where('active', '=', true)->select('id', 'nama')->get();
-    return response()->json($perawat);
-}
-public function getDetail($id)
-{
-    $perawat = Perawat::find($id);
-    return response()->json($perawat);
-}
+    {
+        $perawat = Perawat::where('active', '=', true)->select('id', 'nama')->get();
+        return response()->json($perawat);
+    }
+    public function getDetail($id)
+    {
+        $perawat = Perawat::find($id);
+        return response()->json($perawat);
+    }
 }

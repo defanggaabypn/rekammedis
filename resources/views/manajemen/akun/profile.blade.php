@@ -45,13 +45,13 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">{{ auth()->user()->role }} Profile</h4>
+                        <h4 class="page-title">{{ ucfirst(auth()->user()->role) }} Profile</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">LSHC</a></li>
                             <li><a href="#">Akun</a></li>
-                            <li class="active">{{ auth()->user()->role }} Profile</li>
+                            <li class="active">{{ ucfirst(auth()->user()->role) }} Profile</li>
                         </ol>
                     </div>
                 </div>
@@ -60,37 +60,37 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
                         <div class="white-box">
-                        @if(auth()->user()->role == 'dokter')
-    @php
-        $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
-    @endphp
-    <div class="user-bg"> 
-        @if($dokter && $dokter->photo && $dokter->photo != '../plugins/images/users/d1.jpg')
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset($dokter->photo) }}">
-        @else
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
-        @endif
-    </div>
-@elseif(auth()->user()->role == 'perawat')
-    @php
-        $perawat = \DB::table('perawats')->where('nama', auth()->user()->nama)->first();
-    @endphp
-    <div class="user-bg"> 
-        @if($perawat && $perawat->photo && $perawat->photo != '../plugins/images/users/d1.jpg')
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset($perawat->photo) }}">
-        @else
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
-        @endif
-    </div>
-@else
-    <div class="user-bg"> 
-        @if(auth()->user()->photo && auth()->user()->photo != '/plugins/images/users/d1.jpg')
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset(auth()->user()->photo) }}">
-        @else
-            <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
-        @endif
-    </div>
-@endif
+                            @if(auth()->user()->role == 'dokter')
+                            @php
+                            $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
+                            @endphp
+                            <div class="user-bg">
+                                @if($dokter && $dokter->photo && $dokter->photo != '../plugins/images/users/d1.jpg')
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset($dokter->photo) }}">
+                                @else
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
+                                @endif
+                            </div>
+                            @elseif(auth()->user()->role == 'perawat')
+                            @php
+                            $perawat = \DB::table('perawats')->where('nama', auth()->user()->nama)->first();
+                            @endphp
+                            <div class="user-bg">
+                                @if($perawat && $perawat->photo && $perawat->photo != '../plugins/images/users/d1.jpg')
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset($perawat->photo) }}">
+                                @else
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
+                                @endif
+                            </div>
+                            @else
+                            <div class="user-bg">
+                                @if(auth()->user()->photo && auth()->user()->photo != '/plugins/images/users/d1.jpg')
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset(auth()->user()->photo) }}">
+                                @else
+                                <img class="img-fluid w-100 h-100" style="object-fit: cover;" alt="user" src="{{ asset('plugins/images/users/d1.jpg') }}">
+                                @endif
+                            </div>
+                            @endif
                             <div class="user-btm-box">
                                 <!-- .row -->
                                 <div class="row text-center m-t-10">
@@ -118,7 +118,8 @@
                                 <div class="row text-center m-t-10">
                                     <div class="col-md-12"><strong>Alamat</strong>
                                         <p>{{ auth()->user()->alamat ?? 'Lampung Selatan' }}
-                                            <br /> {{ auth()->user()->kokab_nama ?? 'Lampung' }}, Indonesia.</p>
+                                            <br /> {{ auth()->user()->kokab_nama ?? 'Lampung' }}, Indonesia.
+                                        </p>
                                     </div>
                                 </div>
 
@@ -127,25 +128,25 @@
                                 <!-- Pasien terselesaikan section -->
                                 <div class="row text-center m-t-10">
                                     @if(auth()->user()->role == 'dokter')
-                                        @php
-                                            $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
-                                            $pasienCount = $dokter ? \DB::table('rekam_medis')->where('id_dokter', $dokter->id)->count() : 0;
-                                        @endphp
-                                        <div class="col-md-12"><strong>Pasien Tertangani</strong>
-                                            <h1>{{ $pasienCount }}</h1>
-                                        </div>
+                                    @php
+                                    $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
+                                    $pasienCount = $dokter ? \DB::table('rekam_medis')->where('id_dokter', $dokter->id)->count() : 0;
+                                    @endphp
+                                    <div class="col-md-12"><strong>Pasien Tertangani</strong>
+                                        <h1>{{ $pasienCount }}</h1>
+                                    </div>
                                     @elseif(auth()->user()->role == 'perawat')
-                                        <div class="col-md-12"><strong>Antrian Hari Ini</strong>
-                                            <h1>{{ \DB::table('antrians')->whereDate('tgl_antri', date('Y-m-d'))->count() }}</h1>
-                                        </div>
+                                    <div class="col-md-12"><strong>Antrian Hari Ini</strong>
+                                        <h1>{{ \DB::table('antrians')->whereDate('tgl_antri', date('Y-m-d'))->count() }}</h1>
+                                    </div>
                                     @elseif(auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
-                                        <div class="col-md-12"><strong>Total Pasien</strong>
-                                            <h1>{{ \DB::table('pasiens')->count() }}</h1>
-                                        </div>
+                                    <div class="col-md-12"><strong>Total Pasien</strong>
+                                        <h1>{{ \DB::table('pasiens')->count() }}</h1>
+                                    </div>
                                     @else
-                                        <div class="col-md-12"><strong>Pasien Terselesaikan</strong>
-                                            <h1>{{ $pasienCount ?? 0 }}</h1>
-                                        </div>
+                                    <div class="col-md-12"><strong>Pasien Terselesaikan</strong>
+                                        <h1>{{ $pasienCount ?? 0 }}</h1>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -159,114 +160,114 @@
                                         <th>Nama Lengkap</th>
                                         <td>{{ auth()->user()->nama }}</td>
                                     </tr>
-                                    
+
                                     @if(auth()->user()->role == 'dokter')
-                                        @php
-                                            $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
-                                        @endphp
-                                        
-                                        <tr>
-                                            <th>Jenis Kelamin</th>
-                                            <td>{{ $dokter ? $dokter->kelamin : auth()->user()->jenis_kelamin }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tanggal Lahir</th>
-                                            <td>{{ $dokter ? date('d F Y', strtotime($dokter->tgl_lahir)) : (auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>No Telp</th>
-                                            <td>{{ $dokter ? $dokter->no_telp : auth()->user()->no_telp }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <td>{{ $dokter ? $dokter->email : auth()->user()->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Spesialis</th>
-                                            <td>{{ $dokter ? $dokter->spesialis : auth()->user()->spesialis }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alumni</th>
-                                            <td>{{ $dokter ? $dokter->alumni : auth()->user()->alumni }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alamat</th>
-                                            <td>{{ $dokter ? $dokter->alamat : auth()->user()->alamat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Jumlah Pasien Tertangani</th>
-                                            <td>{{ $dokter ? \DB::table('rekam_medis')->where('id_dokter', $dokter->id)->count() : 0 }}</td>
-                                        </tr>
-                                    
+                                    @php
+                                    $dokter = \DB::table('dokters')->where('nama', auth()->user()->nama)->first();
+                                    @endphp
+
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>{{ $dokter ? $dokter->kelamin : auth()->user()->jenis_kelamin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Lahir</th>
+                                        <td>{{ $dokter ? date('d F Y', strtotime($dokter->tgl_lahir)) : (auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No Telp</th>
+                                        <td>{{ $dokter ? $dokter->no_telp : auth()->user()->no_telp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ $dokter ? $dokter->email : auth()->user()->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Spesialis</th>
+                                        <td>{{ $dokter ? $dokter->spesialis : auth()->user()->spesialis }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alumni</th>
+                                        <td>{{ $dokter ? $dokter->alumni : auth()->user()->alumni }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td>{{ $dokter ? $dokter->alamat : auth()->user()->alamat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jumlah Pasien Tertangani</th>
+                                        <td>{{ $dokter ? \DB::table('rekam_medis')->where('id_dokter', $dokter->id)->count() : 0 }}</td>
+                                    </tr>
+
                                     @elseif(auth()->user()->role == 'perawat')
-                                        @php
-                                            $perawat = \DB::table('perawats')->where('nama', auth()->user()->nama)->first();
-                                        @endphp
-                                        
-                                        <tr>
-                                            <th>Jenis Kelamin</th>
-                                            <td>{{ $perawat ? $perawat->kelamin : auth()->user()->jenis_kelamin }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tanggal Lahir</th>
-                                            <td>{{ $perawat ? date('d F Y', strtotime($perawat->tgl_lahir)) : (auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>No Telp</th>
-                                            <td>{{ $perawat ? $perawat->no_telp : auth()->user()->no_telp }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <td>{{ $perawat ? $perawat->email : auth()->user()->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alumni</th>
-                                            <td>{{ $perawat ? $perawat->alumni : auth()->user()->alumni }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alamat</th>
-                                            <td>{{ $perawat ? $perawat->alamat : auth()->user()->alamat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Antrian Hari Ini</th>
-                                            <td>{{ \DB::table('antrians')->whereDate('tgl_antri', date('Y-m-d'))->count() }}</td>
-                                        </tr>
-                                    
+                                    @php
+                                    $perawat = \DB::table('perawats')->where('nama', auth()->user()->nama)->first();
+                                    @endphp
+
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>{{ $perawat ? $perawat->kelamin : auth()->user()->jenis_kelamin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Lahir</th>
+                                        <td>{{ $perawat ? date('d F Y', strtotime($perawat->tgl_lahir)) : (auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No Telp</th>
+                                        <td>{{ $perawat ? $perawat->no_telp : auth()->user()->no_telp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ $perawat ? $perawat->email : auth()->user()->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alumni</th>
+                                        <td>{{ $perawat ? $perawat->alumni : auth()->user()->alumni }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td>{{ $perawat ? $perawat->alamat : auth()->user()->alamat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Antrian Hari Ini</th>
+                                        <td>{{ \DB::table('antrians')->whereDate('tgl_antri', date('Y-m-d'))->count() }}</td>
+                                    </tr>
+
                                     @else
-                                        <tr>
-                                            <th>Jenis Kelamin</th>
-                                            <td>{{ auth()->user()->jenis_kelamin }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tanggal Lahir</th>
-                                            <td>{{ auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '' }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>No Telp</th>
-                                            <td>{{ auth()->user()->no_telp }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>No Telp 2</th>
-                                            <td>{{ auth()->user()->no_telp2 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Kokab Nama</th>
-                                            <td>{{ auth()->user()->kokab_nama }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <td>{{ auth()->user()->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alumni</th>
-                                            <td>{{ auth()->user()->alumni }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Alamat</th>
-                                            <td>{{ auth()->user()->alamat }}</td>
-                                        </tr>
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>{{ auth()->user()->jenis_kelamin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Lahir</th>
+                                        <td>{{ auth()->user()->tanggal_lahir ? auth()->user()->tanggal_lahir->format('d F Y') : '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No Telp</th>
+                                        <td>{{ auth()->user()->no_telp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No Telp 2</th>
+                                        <td>{{ auth()->user()->no_telp2 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kokab Nama</th>
+                                        <td>{{ auth()->user()->kokab_nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ auth()->user()->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alumni</th>
+                                        <td>{{ auth()->user()->alumni }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td>{{ auth()->user()->alamat }}</td>
+                                    </tr>
                                     @endif
-                                    
+
                                     @if(auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
                                     <tr>
                                         <th>Total Pasien</th>
@@ -281,7 +282,7 @@
                                         <td>{{ \DB::table('users')->count() }}</td>
                                     </tr>
                                     @endif
-                                    
+
                                     <tr>
                                         <th>Pekerjaan</th>
                                         <td>{{ auth()->user()->pekerjaan ?: ucfirst(auth()->user()->role) }}</td>
