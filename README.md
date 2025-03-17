@@ -1,45 +1,114 @@
-## Requirement
+# Laravel Klinik Management System
 
-1. [Composer](getcomposer.org)
-2. [Laravel](https://laravel.com/docs/8.x)
-3. [Xampp](https://www.apachefriends.org/index.html)
+## Deskripsi
+Proyek ini adalah sistem manajemen klinik berbasis web yang dibangun menggunakan Laravel. Aplikasi ini mencakup fitur pengelolaan pasien, jadwal, rekam medis, obat, dokter, perawat, dan keuangan.
 
-## Getting Started!!
+## Fitur Utama
+- Autentikasi pengguna (login/logout)
+- Manajemen pasien (pendaftaran baru & lama)
+- Pemeriksaan pasien
+- Manajemen rekam medis
+- Manajemen obat
+- Manajemen jadwal pasien
+- Manajemen dokter dan perawat
+- Pengelolaan akun dan ganti password
+- Pengelolaan keuangan
 
-1. [git clone https://gitlab.com/pti-ggwp/lshc.git]
-2. Buat database baru dengan nama [lshc]
-3. git bash project [composer install]
-4. git bash project [cp .env.example .env]
-5. git bash project [php artisan key:generate]
-6. git bash project [php artisan migrate:fresh --seed]
-7. git bash project [php artisan serve]
+## Instalasi
 
-## Tambahan(recommended)
+1. Clone repository ini:
+    ```bash
+    https://github.com/defanggaabypn/rekammedis
+    cd <rekammedis>
+    ```
 
-1. Debugbar [composer require barryvdh/laravel-debugbar --dev]
+2. Install dependensi Laravel:
+    ```bash
+    composer install
+    ```
 
-## Tambahan(Optional)
+3. Buat file `.env`:
+    ```bash
+    cp .env.example .env
+    ```
 
-1.-
+4. Generate application key:
+    ```bash
+    php artisan key:generate
+    ```
 
-## Perhatian Commit
+5. Setup database di `.env`:
+    ```env
+    DB_DATABASE=nama_database
+    DB_USERNAME=user_database
+    DB_PASSWORD=password_database
+    ```
 
-1. [optional for --]->deletable => bisa dihapus karena udh slesai digunakan
-2. [optional for --] => file optional, tolong jangan di hapus/diganti
+6. Jalankan migrasi database:
+    ```bash
+    php artisan migrate
+    ```
 
-## Perhatian Directory
+7. Jalankan server lokal:
+    ```bash
+    php artisan serve
+    ```
 
-1. Front-end
-   a. {resources/views} => Blade
-   b. {public/css} => Penyimpanan CSS
-   c. {public/js} => Penyimpanan JS
+## Struktur Proyek
 
-2. Back-end
-   a. {App\Http\Controllers} => Controller
-   b. {App\Http\Middleware} => Middleware
-   c. {App\Models} => Models
+- **composer.json:** Konfigurasi dependensi dan skrip composer.
+- **routes/web.php:** Rute untuk fitur-fitur utama aplikasi.
+- **app/Http/Controllers:** Folder untuk controller manajemen data klinik.
 
-3. DB-Engineer
-   a. {Database\factories} => Factory untuk generate random data
-   b. {Database\Migration} => Struktural database
-   c. {Database\Seeder} => Seeding data yang sudah ada ke database
+## Rute Penting
+
+- `/login`: Halaman login
+- `/dashboard`: Dashboard utama
+- `/pendaftaran`: Pendaftaran pasien
+- `/pemeriksaan`: Pemeriksaan pasien
+- `/manajemen/rekam-medis`: Manajemen rekam medis
+- `/manajemen/obat`: Manajemen obat
+- `/manajemen/dokter`: Manajemen dokter
+- `/manajemen/perawat`: Manajemen perawat
+- `/manajemen/keuangan`: Manajemen keuangan
+- `/manajemen/akun/ganti-password`: Ganti password
+
+## Middleware
+
+- **auth:** Untuk memastikan user sudah login
+- **olah_pasien:** Hak akses khusus pendaftaran
+- **olah_rekmed:** Hak akses rekam medis
+- **olah_obat:** Hak akses manajemen obat
+- **olah_keuangan:** Hak akses manajemen keuangan
+- **superadmin:** Hak akses admin utama
+
+## Tampilan Aplikasi
+![](screenshots/1.png)  
+![](screenshots/2.png)  
+![](screenshots/3.png)
+
+## Dependencies
+
+- Laravel 8.12
+- PHP ^7.3|^8.0
+- Spatie Laravel Permission
+- Doctrine DBAL
+- GuzzleHTTP
+- Laravel Debugbar
+- FakerPHP
+- PHPUnit
+
+## Credits
+- Dibangun menggunakan Laravel Framework
+- Defangga Aby Vonega - Project Manager
+- Ackyra Sibarani - Backend Developer
+- Aminudin Fadilla - QA and Frontend Developer
+- Muhammad Afif - UI/UX
+- Nazla - Database Administrator
+
+## Lisensi
+Proyek ini menggunakan lisensi MIT.
+
+---
+
+Siap untuk dikembangkan lebih lanjut! 🚀
